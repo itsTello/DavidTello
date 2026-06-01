@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Tello Calles | Portfolio</title>
+    <style>
+        /* Variables de color para un diseño tecnológico */
+        :root {
+            --primary-color: #0056b3;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Cabecera (Hero Section) */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 1rem auto;
+            opacity: 0.9;
+        }
+
+        /* Secciones principales */
+        section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Grid de Proyectos */
+        .grid-proyectos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tarjeta-proyecto {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tarjeta-proyecto:hover {
+            transform: translateY(-5px);
+        }
+
+        .tarjeta-proyecto h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .etiqueta {
+            background: #e9ecef;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #61dafb;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>David Tello Calles</h1>
+        <p>Ingeniero de Telecomunicación | Máster en Ingeniería de Telecomunicación</p>
+        <p>Especializado en Radiofrecuencia, Arquitectura de Redes, Hardware e Inteligencia Artificial.</p>
+    </header>
+
+    <section id="proyectos">
+        <div style="text-align: center;"><h2>Proyectos Destacados</h2></div>
+        
+        <div class="grid-proyectos">
+            <!-- Proyecto 1 -->
+            <div class="tarjeta-proyecto">
+                <h3>Sistema Optoacústico (TFG)</h3>
+                <div class="etiquetas">
+                    <span class="etiqueta">Python</span>
+                    <span class="etiqueta">MATLAB</span>
+                    <span class="etiqueta">Instrumentación</span>
+                </div>
+                <p>Caracterización de un láser para sensado no invasivo, desarrollando algoritmos de procesado de señal acústica para validar la viabilidad técnica y económica del hardware.</p>
+                <a href="#">Ver detalles del proyecto &rarr;</a>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="tarjeta-proyecto">
+                <h3>Simulador Radar & SATCOM</h3>
+                <div class="etiquetas">
+                    <span class="etiqueta">MATLAB</span>
+                    <span class="etiqueta">RF</span>
+                    <span class="etiqueta">Link Budgets</span>
+                </div>
+                <p>Modelado en tiempo real de propagación de ondas y cálculo de presupuestos de enlace para sistemas satelitales (GEO/LEO) y comunicaciones móviles urbanas.</p>
+                <a href="#">Ver detalles del proyecto &rarr;</a>
+            </div>
+
+            <!-- Proyecto 3 -->
+            <div class="tarjeta-proyecto">
+                <h3>Intrusion Detection System (AI)</h3>
+                <div class="etiquetas">
+                    <span class="etiqueta">Machine Learning</span>
+                    <span class="etiqueta">Python</span>
+                    <span class="etiqueta">Ciberseguridad</span>
+                </div>
+                <p>Desarrollo de un IDS aplicando Random Forest y redes neuronales para clasificar ataques y amenazas en flujos de red con alta precisión (F1-Score).</p>
+                <a href="#">Ver detalles del proyecto &rarr;</a>
+            </div>
+            
+            <!-- Proyecto 4 -->
+            <div class="tarjeta-proyecto">
+                <h3>Robótica Autónoma & Visión</h3>
+                <div class="etiquetas">
+                    <span class="etiqueta">OpenCV</span>
+                    <span class="etiqueta">Hardware</span>
+                    <span class="etiqueta">C</span>
+                </div>
+                <p>Programación de un robot omnidireccional capaz de evadir obstáculos y seguir trayectorias basándose exclusivamente en algoritmos de visión artificial monocular.</p>
+                <a href="#">Ver detalles del proyecto &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>¿Conectamos?</p>
+        <a href="mailto:davidtellocalles@gmail.com">Correo</a>
+        <a href="https://linkedin.com/in/TU-ENLACE" target="_blank">LinkedIn</a>
+        <a href="https://github.com/TU-USUARIO" target="_blank">GitHub</a>
+    </footer>
+
+</body>
+</html>
