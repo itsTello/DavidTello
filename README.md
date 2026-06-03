@@ -35,7 +35,7 @@ Soy graduado en Ingeniería de Tecnologías y Servicios de Telecomunicación por
 
 A lo largo de mi carrera, he desarrollado proyectos prácticos que abarcan desde la capa física hasta la capa de aplicación:
 
-*   [**Sistema Optoacústico de Bajo Coste (TFG)**](enlace-a-tu-repo): Caracterización de un láser para sensado no invasivo, desarrollando algoritmos de procesado de señal acústica en Python y MATLAB para validar la viabilidad del hardware.
+*   [**Sistema Optoacústico de Bajo Coste (TFG)**]((https://github.com/itsTello/sistema-low-cost-optoacustico)): Caracterización de un láser para sensado no invasivo, desarrollando algoritmos de procesado de señal acústica en Python y MATLAB para validar la viabilidad del hardware.
 *   [**DeepFake Detection & Robótica Autónoma**]((https://github.com/itsTello/deepfake-detection)): Modelos de detección (deepfake) usando CNN preentrenadas y transfer-learning con EfficientNet-B0 y algoritmos de visión artificial monocular para el control de trayectorias de un robot omnidireccional(Holobot).
 *   [**Simulador de Radar y Enlaces Satelitales**](https://github.com/itsTello/simulador-radar-matlab): Modelado en tiempo real de un simulador Radar en MATLAB con propagación de ondas, compresion de pulsos(chirp) y umbrales de detección. Cálculo de presupuestos de enlace (Link Budgets) para sistemas GEO/LEO y comunicaciones móviles(urbanas, suburbanas y rurales).
 *   [**Diseño de Antenas (Microstrip / Dipolo)**](enlace-a-tu-repo): Diseño y simulación electromagnética en banda 4.7 GHz utilizando CST Studio Suite y ADS.
