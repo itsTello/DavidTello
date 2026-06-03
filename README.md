@@ -39,7 +39,7 @@ A lo largo de mi carrera, he desarrollado proyectos prácticos que abarcan desde
 *   [**DeepFake Detection & Robótica Autónoma**]((https://github.com/itsTello/deepfake-detection)): Modelos de detección (deepfake) usando CNN preentrenadas y transfer-learning con EfficientNet-B0 y algoritmos de visión artificial monocular para el control de trayectorias de un robot omnidireccional(Holobot).
 *   [**Simulador de Radar y Enlaces Satelitales**](https://github.com/itsTello/simulador-radar-matlab): Modelado en tiempo real de un simulador Radar en MATLAB con propagación de ondas, compresion de pulsos(chirp) y umbrales de detección. Cálculo de presupuestos de enlace (Link Budgets) para sistemas GEO/LEO y comunicaciones móviles(urbanas, suburbanas y rurales).
 *   [**Diseño de Antenas (Microstrip / Dipolo)**](enlace-a-tu-repo): Diseño y simulación electromagnética en banda 4.7 GHz utilizando CST Studio Suite y ADS.
-*   [**Intrusion Detection System (IDS) basado en IA**](https://github.com/itsTello/AI-Driven_Intrusion-Detection-System): Sistema de ciberseguridad aplicando *Random Forest* para clasificar ataques en flujos de red con alta precisión.
+*   [**Intrusion Detection System (IDS) basado en IA**](https://github.com/itsTello/AI-Driven-Intrusion-Detection-System): Sistema de ciberseguridad aplicando *Random Forest* para clasificar ataques en flujos de red con alta precisión.
 *   [**Sistema de Audio en FPGA en Tiempo Real**](enlace-a-tu-repo): Diseño hardware/software en Vivado y Vitis (C) para grabación y reproducción mediante control de códecs.
 
 ---
