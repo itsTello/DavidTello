@@ -2,7 +2,7 @@
 
 **Ingeniero de Telecomunicación | Especialista en RF, Redes, Señal e IA**
 
-Soy graduado en Ingeniería de Tecnologías y Servicios de Telecomunicación por la UAM y actualmente curso el Máster habilitante. Me apasiona resolver problemas complejos integrando hardware, algoritmos de procesado de señal y arquitecturas de red. Busco constantemente llevar la teoría a la práctica.
+Soy graduado en Ingeniería de Tecnologías y Servicios de Telecomunicación por la UAM y actualmente curso el Máster habilitante. Me apasiona resolver problemas complejos integrando hardware y software, algoritmos de procesado de señal y arquitecturas de red. Busco constantemente llevar la teoría a la práctica.
 
 📫 **Contacto:** [davidtellocalles@gmail.com](mailto:davidtellocalles@gmail.com) | [LinkedIn](https://www.linkedin.com/in/david-tello-calles-24412340b/)
 
