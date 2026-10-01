@@ -4,13 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David Tello Calles | Portfolio</title>
+    
+    <!-- Fuentes e Iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Variables de color para un diseño tecnológico */
+        /* --- Variables de color (Tu identidad visual) --- */
         :root {
             --primary-color: #0056b3;
+            --secondary-color: #004494;
+            --accent-color: #00e5ff;
             --bg-color: #f8f9fa;
             --text-color: #333;
             --card-bg: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -22,66 +33,155 @@
             line-height: 1.6;
         }
 
-        /* Cabecera (Hero Section) */
-        header {
+        /* --- Header: Menú Glassmorphism y Barra de Progreso --- */
+        header.top-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 86, 179, 0.92); 
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        header.top-nav nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+
+        header.top-nav nav ul li {
+            margin: 0 15px;
+        }
+
+        header.top-nav nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        header.top-nav nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        header.top-nav nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Barra de progreso */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            border-radius: 0 2px 2px 0;
+            transition: width 0.1s ease-out;
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
             background-color: var(--primary-color);
             color: white;
-            padding: 4rem 2rem;
+            padding: 8rem 2rem 4rem;
             text-align: center;
+            margin-bottom: 2rem;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
+        .hero h1 { margin: 0; font-size: 2.8rem; letter-spacing: -1px; }
+        .hero p.subtitle { font-size: 1.2rem; max-width: 800px; margin: 1rem auto; opacity: 0.9; }
+        .hero .contact-info { font-size: 1rem; color: #d1e4f6; margin-top: 1.5rem; font-weight: 500; }
 
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 1rem auto;
-            opacity: 0.9;
-        }
-
-        /* Secciones principales */
+        /* --- Secciones y Grid --- */
         section {
             padding: 3rem 2rem;
             max-width: 1200px;
             margin: auto;
         }
 
-        h2 {
+        h2.section-title {
             text-align: center;
             color: var(--primary-color);
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--primary-color);
             display: inline-block;
             padding-bottom: 0.5rem;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        /* Grid de Proyectos */
-        .grid-proyectos {
+        .subsection-title {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 2rem 0;
+            font-weight: 600;
+        }
+
+        .grid-proyectos, .grid-habilidades {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .tarjeta-proyecto {
+        /* --- Tarjetas --- */
+        .tarjeta {
             background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            border-top: 4px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .tarjeta-proyecto:hover {
+        .tarjeta:hover {
             transform: translateY(-5px);
+            border-top-color: var(--primary-color);
         }
 
-        .tarjeta-proyecto h3 {
+        .tarjeta h3 {
             margin-top: 0;
             color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .tarjeta p.desc {
+            flex-grow: 1;
+            color: #555;
+            margin-bottom: 1.5rem;
         }
 
+        /* --- Etiquetas (Tags) --- */
         .etiquetas {
             display: flex;
             flex-wrap: wrap;
@@ -91,120 +191,751 @@
 
         .etiqueta {
             background: #e9ecef;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+        
+        .etiqueta-soft {
+            background: #e3f2fd;
+            color: #0d47a1;
+            border-color: #bbdefb;
         }
 
-        /* Footer */
+        /* --- Botones Collapsibles --- */
+        .collapsible {
+            background-color: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 10px 15px;
+            width: 100%;
+            border: 2px solid var(--primary-color);
+            border-radius: 6px;
+            text-align: left;
+            font-size: 0.95em;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .collapsible:hover {
+            background-color: #f0f7ff;
+        }
+
+        .collapsible::after {
+            content: '▼'; 
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .collapsible.active::after {
+            transform: rotate(-180deg);
+        }
+
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f8f9fa;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .content-inner {
+            padding: 15px;
+            font-size: 0.9em;
+            color: #444;
+            border: 1px solid #eee;
+            border-top: none;
+        }
+
+        .content-inner ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .content-inner ul li {
+            margin-bottom: 8px;
+        }
+
+        /* --- Timeline --- */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: #dee2e6;
+            top: 25px;
+            bottom: 25px;
+            left: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--primary-color);
+            border: 4px solid var(--bg-color);
+            border-radius: 50%;
+            left: 9.5px; 
+            top: 5px;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background-color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        .timeline-content {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.2s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateX(5px);
+        }
+
+        .timeline-date {
+            color: #6c757d;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-content h3 {
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .timeline-content h4 {
+            margin: 0 0 10px 0;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        /* --- Animaciones al hacer Scroll --- */
+        .hidden {
+            opacity: 0;
+            filter: blur(3px);
+            transform: translateY(40px);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .show {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        @media(prefers-reduced-motion) {
+            .hidden { transition: none; filter: none; transform: none; opacity: 1; }
+        }
+
+        /* --- Footer --- */
         footer {
-            background-color: #333;
+            background-color: #1a1a1a;
             color: white;
             text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
         }
 
         footer a {
-            color: #61dafb;
+            color: var(--accent-color);
             text-decoration: none;
             margin: 0 1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
+        
+        footer a:hover { color: white; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>David Tello Calles</h1>
-        <p>Ingeniero de Telecomunicación | Máster en Ingeniería de Telecomunicación</p>
-        <p>Especializado en Radiofrecuencia, Arquitectura de Redes, Hardware e Inteligencia Artificial.</p>
+    <!-- Menú Superior y Progress Bar -->
+    <header class="top-nav">
+        <nav>
+            <ul>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#educacion">Educación</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+            </ul>
+        </nav>
+        <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+        </div>
     </header>
 
-    <section id="proyectos">
-        <div style="text-align: center;"><h2>Proyectos Destacados</h2></div>
-        
-        <div class="grid-proyectos">
-            <!-- Proyecto 1 -->
-            <div class="tarjeta-proyecto">
-                <h3>Sistema Optoacústico (TFG)</h3>
-                <div class="etiquetas">
-                    <span class="etiqueta">Python</span>
-                    <span class="etiqueta">MATLAB</span>
-                    <span class="etiqueta">Instrumentación</span>
-                </div>
-                <p>Caracterización de un láser para sensado no invasivo, desarrollando algoritmos de procesado de señal acústica (FFT/IFFT) para validar la viabilidad técnica y económica del hardware.</p>
-                <a href="mailto:davidtellocalles@gmail.com?subject=Solicitud de información técnica sobre el TFG Optoacústico">Código Privado - Solicitar Detalles &rarr;</a>
-            </div>
-
-            <!-- Proyecto 2 -->
-            <div class="tarjeta-proyecto">
-                <h3>Simulador Radar</h3>
-                <div class="etiquetas">
-                    <span class="etiqueta">MATLAB</span>
-                    <span class="etiqueta">RF</span>
-                    <span class="etiqueta">Link Budgets</span>
-                </div>
-                <p>Modelado en tiempo real de propagación de ondas y cálculo de presupuestos de enlace para sistemas satelitales (GEO/LEO) y comunicaciones móviles urbanas.</p>
-                <a href="https://github.com/itsTello/simulador-radar-matlab" target="_blank">Ver detalles del proyecto &rarr;</a>
-            </div>
-
-            <!-- Proyecto 3 -->
-            <div class="tarjeta-proyecto">
-                <h3>Intrusion Detection System (AI)</h3>
-                <div class="etiquetas">
-                    <span class="etiqueta">Machine Learning</span>
-                    <span class="etiqueta">Python</span>
-                    <span class="etiqueta">Ciberseguridad</span>
-                </div>
-                <p>Desarrollo de un IDS aplicando Random Forest y redes neuronales para clasificar ataques y amenazas en flujos de red con alta precisión (F1-Score).</p>
-                <a href="https://github.com/itsTello/AI-Driven-Intrusion-Detection-System" target="_blank">Ver detalles del proyecto &rarr;</a>
-            </div>
-            
-            <!-- Proyecto 4 -->
-            <div class="tarjeta-proyecto">
-                <h3>Robótica Autónoma (HoloBot)</h3>
-                <div class="etiquetas">
-                    <span class="etiqueta">Python</span>
-                    <span class="etiqueta">OpenCV</span>
-                    <span class="etiqueta">Raspberry Pi</span>
-                </div>
-                <p>Navegación autónoma de un robot holonómico mediante visión artificial. Implementación de controladores PID, cinemática inversa y máquina de estados para la evasión autónoma de obstáculos.</p>
-                <a href="https://github.com/itsTello/Holobot-Robotics-Projects" target="_blank">Ver detalles del proyecto &rarr;</a>
-            </div>
-
-            <!-- Proyecto 5 -->
-            <div class="tarjeta-proyecto">
-                <h3>DeepFake Detection System</h3>
-                <div class="etiquetas">
-                    <span class="etiqueta">PyTorch</span>
-                    <span class="etiqueta">Deep Learning</span>
-                    <span class="etiqueta">Computer Vision</span>
-                </div>
-                <p>Análisis intra e inter-dominio de modelos CNN (EfficientNet-B0) para detectar manipulaciones faciales, aplicando Data Augmentation avanzado para mitigar el Generalization Gap.</p>
-                <a href="https://github.com/itsTello/deepfake-detection" target="_blank">Ver detalles del proyecto &rarr;</a>
-            </div>
-
-             <!-- Proyecto 6 -->
-            <div class="tarjeta-proyecto">
-                <h3>Co-diseño HW/SW (SoC Zynq-7000)</h3>
-                <div class="etiquetas">
-                    <span class="etiqueta">Vivado & Vitis</span>
-                    <span class="etiqueta">FPGA</span>
-                    <span class="etiqueta">AXI4 / DMA</span>
-                    <span class="etiqueta">C</span>
-                </div>
-                <p>Desarrollo integral de sistemas embebidos combinando procesador ARM y lógica programable. Incluye creación de IPs AXI, gestión de interrupciones, depuración ILA y transferencias de alta velocidad DMA.</p>
-            </div>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>David Tello Calles</h1>
+        <p class="subtitle">Ingeniero de Telecomunicación | Máster en Ingeniería de Telecomunicación</p>
+        <p style="max-width: 600px; margin: auto; font-size: 1.1rem; opacity: 0.85;">
+            Especializado en Radiofrecuencia, Arquitectura de Redes, Hardware e Inteligencia Artificial.
+        </p>
+        <div class="contact-info">
+            Tres Cantos, Madrid, España | +34 640 208 591
         </div>
-    </section>
+    </div>
+
+    <main>
+        <!-- SECCIÓN PROYECTOS -->
+        <section id="proyectos">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            
+            <!-- SUBSECCIÓN: HARDWARE & EMBEDDED SYSTEMS -->
+            <h3 class="subsection-title">Hardware & Embedded Systems</h3>
+            <div class="grid-proyectos">
+                
+                <!-- Hardware 1: HoloBot -->
+                <div class="tarjeta hidden">
+                    <h3>Robótica Autónoma (HoloBot)</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Python</span>
+                        <span class="etiqueta">OpenCV</span>
+                        <span class="etiqueta">Raspberry Pi</span>
+                    </div>
+                    <p class="desc">Ingeniería de un robot omnidireccional (HoloBot) capaz de seguir rutas exclusivamente mediante visión artificial monocular (OmniVision OV5647).</p>
+                    
+                    <button class="collapsible">Arquitectura de Control Visual</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Algoritmos de procesamiento de imágenes para segmentación de líneas y estimación de orientación.</li>
+                                <li>Diseño de un controlador visual que traduce errores perceptivos en velocidades cartesianas (cinemática inversa y PID).</li>
+                                <li>Módulo avanzado implementado mediante máquina de estados para la evasión de obstáculos y recuperación de trayectoria.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="https://github.com/itsTello/Holobot-Robotics-Projects" target="_blank" style="margin-top:10px; font-weight: bold; color: var(--secondary-color); text-decoration: none;">Ver Repositorio &rarr;</a>
+                </div>
+
+                <!-- Hardware 2: Velocista -->
+                <div class="tarjeta hidden">
+                    <h3>Navegador Autónomo ("Velocista")</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">I2C</span>
+                        <span class="etiqueta">IMU / Sensores IR</span>
+                        <span class="etiqueta">Hardware Integration</span>
+                    </div>
+                    <p class="desc">Programación de la plataforma robótica para navegación autónoma a alta velocidad integrando seguidores de línea IR (CNY70) y centrado de pasillos.</p>
+                    
+                    <button class="collapsible">Integración de Sensores</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Integración de un expansor I2C para conmutar dinámicamente los modos operativos del robot.</li>
+                                <li>Procesamiento en tiempo real de la telemetría de aceleración en 3 ejes mediante la IMU integrada.</li>
+                                <li>Análisis y documentación de tramas de comunicación I2C mediante el uso de analizadores lógicos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Hardware 3: FPGA -->
+                <div class="tarjeta hidden">
+                    <h3>Co-diseño HW/SW (SoC Zynq-7000)</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Vivado & Vitis</span>
+                        <span class="etiqueta">FPGA / Simulink</span>
+                        <span class="etiqueta">AXI4 / DMA</span>
+                        <span class="etiqueta">C</span>
+                    </div>
+                    <p class="desc">Desarrollo de un sistema de grabación y reproducción de audio en tiempo real utilizando síntesis de hardware y procesador ARM.</p>
+                    
+                    <button class="collapsible">Detalles de Integración HW/SW</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Diseño de bloques IP (AXI), gestión de interrupciones, transferencias DMA de alta velocidad y depuración ILA.</li>
+                                <li>Implementación de software de control embebido en C (Vitis) para gestionar el flujo de datos y códecs de audio.</li>
+                                <li>Integración de periféricos integrados en la placa FPGA para control físico del volumen y modos de reproducción.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hardware 4: Space Invaders -->
+                <div class="tarjeta hidden">
+                    <h3>Consola Embebida (Space Invaders)</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">C</span>
+                        <span class="etiqueta">Microcontroladores</span>
+                        <span class="etiqueta">FSM</span>
+                        <span class="etiqueta">I/O Peripherals</span>
+                    </div>
+                    <p class="desc">Desarrollo en C de un minijuego interactivo basado en las dinámicas clásicas del arcade Space Invaders, ejecutado íntegramente sobre un microcontrolador.</p>
+                    
+                    <button class="collapsible">Lógica del Sistema Embebido</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Diseño de una Máquina de Estados Finitos (FSM) robusta para gestionar la lógica del juego, disparos y validación de inputs.</li>
+                                <li>Control de hardware e integración mediante interfaces I/O de bajo nivel.</li>
+                                <li>Uso de periféricos como Joysticks, Acelerómetros y Pantallas LCD para una experiencia interactiva completa.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBSECCIÓN: SPACE & RADIOFREQUENCY (RF) -->
+            <h3 class="subsection-title">Space & Radiofrequency (RF)</h3>
+            <div class="grid-proyectos">
+                
+                <!-- RF 1: Radar -->
+                <div class="tarjeta hidden">
+                    <h3>Sistemas de Radar y Procesamiento de Señal</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">MATLAB</span>
+                        <span class="etiqueta">RF</span>
+                        <span class="etiqueta">Signal Processing</span>
+                    </div>
+                    <p class="desc">Desarrollo de un simulador de radar continuo en tiempo real en MATLAB, modelando la propagación de ondas, compresión de pulsos (Chirp) y umbrales de detección.</p>
+                    
+                    <button class="collapsible">Detalles del Simulador</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Implementación de ecuaciones físicas para el cálculo de Potencia Recibida basándose en la sección cruzada del radar (RCS) y ruido AWGN.</li>
+                                <li>Simulación de escenarios de ambigüedad y guerra electrónica donde objetivos fuera de rango engañan al indicador PPI.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="https://github.com/itsTello/simulador-radar-matlab" target="_blank" style="margin-top:10px; font-weight: bold; color: var(--secondary-color); text-decoration: none;">Ver Repositorio &rarr;</a>
+                </div>
+
+                <!-- RF 2: Móviles -->
+                <div class="tarjeta hidden">
+                    <h3>Comunicaciones Móviles (Propagación y Link Budgets)</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Link Budgets</span>
+                        <span class="etiqueta">Telecom</span>
+                        <span class="etiqueta">Modelado Espacial</span>
+                    </div>
+                    <p class="desc">Cálculo de pérdidas empíricas y modelado de cobertura para sistemas móviles macrocelulares en bandas de 405 MHz a 1950 MHz en entornos urbanos.</p>
+                    
+                    <button class="collapsible">Análisis de Red Celular</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Ingeniería de <em>link budgets</em> completos definiendo rangos operativos basados en SNR, figura de ruido y márgenes de shadow/multipath.</li>
+                                <li>Modelado de huellas de cobertura para diversas zonas (urbano, suburbano, rural) ajustando potencia y ganancias de antena.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RF 3: SatCom -->
+                <div class="tarjeta hidden">
+                    <h3>Comunicaciones Satelitales (SatCom)</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Satélite</span>
+                        <span class="etiqueta">GEO/LEO</span>
+                        <span class="etiqueta">Starlink Architecture</span>
+                    </div>
+                    <p class="desc">Ejecución de presupuestos de enlace ascendente y descendente (EIRP, Eb/N0, SNR) para sistemas GEO bajo diversas condiciones atmosféricas.</p>
+                    
+                    <button class="collapsible">Análisis Satelital Avanzado</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Dimensionamiento de antenas receptoras terrestres basados en zonas de cobertura, atenuación por lluvia y espacio libre.</li>
+                                <li>Análisis de capacidades de enlace para redes emergentes LEO, evaluando la arquitectura LTE <em>direct-to-cell</em> de Starlink.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RF 4: Diseño de Antenas -->
+                <div class="tarjeta hidden">
+                    <h3>Diseño de Antenas y Microondas (RF)</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">CST Studio Suite</span>
+                        <span class="etiqueta">Keysight ADS</span>
+                        <span class="etiqueta">Antenna Design</span>
+                    </div>
+                    <p class="desc">Diseño electromagnético y simulación de antenas Microstrip y Dipolo optimizando su geometría para la banda de frecuencia de 4.7 GHz.</p>
+                    <button class="collapsible">Flujo de Simulación RF</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Ingeniería de la línea de transmisión y la red de adaptación de impedancias utilizando ADS para máxima transferencia de potencia.</li>
+                                <li>Análisis de rendimiento (S11, VSWR) y patrones de radiación 3D (Farfield) en CST Studio para verificar directividad y ganancia.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBSECCIÓN: TELEMATICS, NETWORKS & CYBERSECURITY -->
+            <h3 class="subsection-title">Telematics, Networks & Cybersecurity</h3>
+            <div class="grid-proyectos">
+                
+                <!-- Redes 1: API RESTful -->
+                <div class="tarjeta hidden">
+                    <h3>Web Services & API Development (VoIP)</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Flask / REST</span>
+                        <span class="etiqueta">GraphQL</span>
+                        <span class="etiqueta">OAuth2</span>
+                        <span class="etiqueta">Wireshark</span>
+                    </div>
+                    <p class="desc">Desarrollo de una API RESTful utilizando Flask para gestionar, filtrar y almacenar persistentemente registros de llamadas VoIP en formato JSON.</p>
+                    
+                    <button class="collapsible">Arquitectura y Seguridad</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Implementación de autenticación segura aprovechando OAuth2 a través del proveedor de identidad de Google.</li>
+                                <li>Análisis de tráfico de API y métodos HTTP utilizando Wireshark y curl.</li>
+                                <li>Evaluación de respuestas y migración de endpoints a GraphQL para optimizar consultas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Redes 2: IDS -->
+                <div class="tarjeta hidden">
+                    <h3>AI-Driven Intrusion Detection System</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Machine Learning</span>
+                        <span class="etiqueta">Deep Learning</span>
+                        <span class="etiqueta">Ciberseguridad</span>
+                    </div>
+                    <p class="desc">Desarrollo de un IDS de baja latencia utilizando Machine Learning (Random Forest) y Deep Learning (MLP) para clasificar flujos de red.</p>
+                    
+                    <button class="collapsible">Pipeline de Datos y Modelos</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Ingeniería de un pipeline de datos optimizado (44 características clave) mitigando la fuga de datos.</li>
+                                <li>Resolución del desequilibrio de clases severo utilizando una técnica dinámica híbrida SMOTE.</li>
+                                <li>Altos F1-Scores logrados al clasificar más de 300,000 flujos en 5 macromodelos de ataque (DoS, Backdoors, Amenazas Avanzadas).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="https://github.com/itsTello/AI-Driven-Intrusion-Detection-System" target="_blank" style="margin-top:10px; font-weight: bold; color: var(--secondary-color); text-decoration: none;">Ver Repositorio &rarr;</a>
+                </div>
+
+                <!-- Redes 3: Infraestructura y Telemetría -->
+                <div class="tarjeta hidden">
+                    <h3>Infraestructura de Red y Telemetría</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Network Planning</span>
+                        <span class="etiqueta">Telemetry</span>
+                        <span class="etiqueta">DPI</span>
+                    </div>
+                    <p class="desc">Despliegue de recolectores y exportadores de red para reunir telemetría en tiempo real y visualizar datos de flujo de tráfico.</p>
+                    
+                    <button class="collapsible">Análisis y Dimensionamiento</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Realización de inspección profunda de paquetes (DPI) y análisis de flujo para identificar cuellos de botella, protocolos y patrones de uso.</li>
+                                <li>Dimensionamiento de la infraestructura de red en base a requisitos de capacidad.</li>
+                                <li>Generación de una propuesta de presupuesto real y optimizada en costes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBSECCIÓN: AI & SIGNAL PROCESSING -->
+            <h3 class="subsection-title">AI & Signal Processing</h3>
+            <div class="grid-proyectos">
+                
+                <!-- AI 1: TFG Optoacústico -->
+                <div class="tarjeta hidden">
+                    <h3>Sistema Optoacústico (TFG)</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Python</span>
+                        <span class="etiqueta">MATLAB</span>
+                        <span class="etiqueta">Instrumentación</span>
+                    </div>
+                    <p class="desc">Caracterización de un láser de bajo coste para sensado no invasivo, desarrollando algoritmos de procesado de señal acústica (FFT/IFFT).</p>
+                    
+                    <button class="collapsible">Logros Técnicos</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Desarrollo íntegro de scripts en Python y MATLAB para procesamiento avanzado.</li>
+                                <li>Validación de viabilidad técnica y económica del hardware propuesto.</li>
+                                <li>Calificación obtenida: 8.5/10 (Matrícula de Honor).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="mailto:davidtellocalles@gmail.com" style="margin-top:10px; font-weight: bold; color: var(--secondary-color); text-decoration: none;">Código Privado &rarr;</a>
+                </div>
+
+                <!-- AI 2: DeepFake Detection -->
+                <div class="tarjeta hidden">
+                    <h3>DeepFake Detection System</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">PyTorch / TensorFlow</span>
+                        <span class="etiqueta">Computer Vision</span>
+                        <span class="etiqueta">Optuna</span>
+                    </div>
+                    <p class="desc">Desarrollo de un modelo robusto de detección de DeepFakes utilizando una arquitectura CNN EfficientNet-B0 y Transfer Learning.</p>
+                    
+                    <button class="collapsible">Pipeline y Optimización</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Ingeniería de un pipeline de Data Augmentation agresivo (compresión JPEG, desenfoque gaussiano) para mitigar el Generalization Gap inter-base de datos.</li>
+                                <li>Optimización exhaustiva de hiperparámetros utilizando Optuna.</li>
+                                <li>Mejora del AUC cross-dataset en casi un 40%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="https://github.com/itsTello/deepfake-detection" target="_blank" style="margin-top:10px; font-weight: bold; color: var(--secondary-color); text-decoration: none;">Ver Repositorio &rarr;</a>
+                </div>
+
+                <!-- AI 3: Biometric Signal Processing -->
+                <div class="tarjeta hidden">
+                    <h3>Reconocimiento Biométrico de Escritura</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">ANNs & DTW</span>
+                        <span class="etiqueta">Signal Processing</span>
+                        <span class="etiqueta">MLP</span>
+                    </div>
+                    <p class="desc">Desarrollo de un sistema de reconocimiento biométrico para trayectorias de escritura online utilizando Dynamic Time Warping (DTW) y redes neuronales.</p>
+                    
+                    <button class="collapsible">Extracción de Características y Resultados</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <ul>
+                                <li>Ingeniería de un pipeline de extracción de características seleccionando descriptores cinemáticos clave (velocidad, ángulo) y mapas de calor espaciales.</li>
+                                <li>Diseño y entrenamiento de un Perceptrón Multicapa (MLP).</li>
+                                <li>Logro de un 98.7% de precisión mediante rigurosa validación cruzada.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN HABILIDADES (Actualizada con las skills de Mario) -->
+        <section id="habilidades">
+            <h2 class="section-title">Competencias Técnicas y Personales</h2>
+            
+            <div class="grid-habilidades">
+                <div class="tarjeta hidden">
+                    <h3>Programming & Languages</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Python</span>
+                        <span class="etiqueta">C / C++</span>
+                        <span class="etiqueta">Java</span>
+                        <span class="etiqueta">MATLAB</span>
+                        <span class="etiqueta">VHDL</span>
+                        <span class="etiqueta">Assembly</span>
+                        <span class="etiqueta">SQL</span>
+                        <span class="etiqueta">Bash</span>
+                        <span class="etiqueta">LaTeX</span>
+                        <span class="etiqueta">Linux</span>
+                        <span class="etiqueta">Git</span>
+                    </div>
+                </div>
+
+                <div class="tarjeta hidden">
+                    <h3>Electronics & FPGA</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">Vivado</span>
+                        <span class="etiqueta">Vitis HLS</span>
+                        <span class="etiqueta">FPGAs</span>
+                        <span class="etiqueta">Microcontrollers</span>
+                        <span class="etiqueta">Sensors (I2C/IMU)</span>
+                        <span class="etiqueta">LTspice</span>
+                    </div>
+                </div>
+
+                <div class="tarjeta hidden">
+                    <h3>RF & Telecommunications</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">CST Studio</span>
+                        <span class="etiqueta">ADS</span>
+                        <span class="etiqueta">Signal Processing</span>
+                        <span class="etiqueta">Wireshark</span>
+                        <span class="etiqueta">Antenna Design</span>
+                        <span class="etiqueta">TCP/IP Networking</span>
+                    </div>
+                </div>
+
+                <div class="tarjeta hidden">
+                    <h3>AI & Software Tools</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta">PyTorch / TensorFlow</span>
+                        <span class="etiqueta">Computer Vision</span>
+                        <span class="etiqueta">Flask / REST APIs</span>
+                        <span class="etiqueta">Scikit-learn</span>
+                        <span class="etiqueta">Pandas / NumPy</span>
+                    </div>
+                </div>
+
+                <div class="tarjeta hidden" style="grid-column: 1 / -1;">
+                    <h3>Soft Skills & Languages</h3>
+                    <div class="etiquetas">
+                        <span class="etiqueta etiqueta-soft">Spanish (Native)</span>
+                        <span class="etiqueta etiqueta-soft">English (C1)</span>
+                        <span class="etiqueta etiqueta-soft">US Experience</span>
+                        <span class="etiqueta etiqueta-soft">Crisis Management</span>
+                        <span class="etiqueta etiqueta-soft">Teamwork</span>
+                    </div>
+                    <p class="desc" style="margin-top: 15px; font-size: 0.95rem;">Sólida capacidad para la toma de decisiones bajo presión y resolución de problemas, con experiencia en entornos bilingües e internacionales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN EDUCACIÓN -->
+        <section id="educacion">
+            <h2 class="section-title">Educación</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025 - 2027 (En curso)</span>
+                        <h3>Máster en Ingeniería de Telecomunicación</h3>
+                        <h4>Universidad Autónoma de Madrid (UAM)</h4>
+                        <p>Cursos destacados: Dispositivos de Radiocomunicación, Sistemas Electrónicos Integrados, Planificación de Redes, Comunicaciones Móviles y Satelitales. (Matrícula de Honor, 9.0).</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2021 - 2026</span>
+                        <h3>Grado en Tecnologías de la Telecomunicación</h3>
+                        <h4>Universidad Autónoma de Madrid (UAM)</h4>
+                        <p>Especialidad en Sonido e Imagen. TFG con calificación 8.5/10 (Matrícula de Honor). Cursos destacados: Circuitos Analógicos y de Potencia (Matrícula de Honor, 9.5).</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2019 - 2021</span>
+                        <h3>Bachillerato Internacional (IB Diploma)</h3>
+                        <h4>IES Rosa Chacel, España</h4>
+                        <p>Currículo bilingüe riguroso enfocado en el pensamiento crítico, la investigación independiente y la resolución analítica de problemas.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2018 - 2019</span>
+                        <h3>Año Académico en el Extranjero (4º ESO)</h3>
+                        <h4>Fort Collins High School, EE. UU.</h4>
+                        <p>Programa de inmersión total durante un año académico completo en el sistema educativo estadounidense.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN EXPERIENCIA -->
+        <section id="experiencia">
+            <h2 class="section-title">Experiencia Adicional</h2>
+            <div class="timeline">
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot" style="background-color: #28a745;"></div>
+                    <div class="timeline-content" style="border-left-color: #28a745;">
+                        <h3>Socorrista y Asistente de Seguridad</h3>
+                        <h4>Eventos a gran escala y servicios de emergencia</h4>
+                        <p>Desarrollo de una gran capacidad de toma de decisiones bajo presión, gestión de crisis y trabajo en equipo multidisciplinar en situaciones críticas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
-        <p>¿Conectamos?</p>
-        <a href="mailto:davidtellocalles@gmail.com">Correo</a>
+        <p style="font-size: 1.2rem; margin-bottom: 1rem;">¿Conectamos?</p>
+        <a href="mailto:davidtellocalles@gmail.com">Correo Electrónico</a>
         <a href="https://www.linkedin.com/in/david-tello-calles-24412340b" target="_blank">LinkedIn</a>
         <a href="https://github.com/itsTello" target="_blank">GitHub</a>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #777;">&copy; 2026 David Tello Calles. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // 1. Lógica para los Botones Desplegables (Collapsibles)
+        const collapsibles = document.querySelectorAll(".collapsible");
+        
+        collapsibles.forEach(button => {
+            button.addEventListener("click", function() {
+                this.classList.toggle("active");
+                const content = this.nextElementSibling;
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px"; 
+                }
+            });
+        });
+
+        // 2. Lógica para la Barra de Progreso Superior
+        window.onscroll = function() { 
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        };
+
+        // 3. Animaciones al hacer Scroll (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
 </body>
 </html>
